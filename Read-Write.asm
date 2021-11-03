@@ -1,0 +1,75 @@
+ Exp. name: Writing a program to 
+a) prompt the user, b) read first, middle and last initials of a person's name & c) display them down the left margin
+
+Code:::
+
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+MSG DB 'ENTER THREE INITIALS: $'
+A DB ?
+B DB ?
+C DB ?
+
+.CODE
+MAIN PROC
+MOV AX,@DATA
+MOV DS, AX
+
+LEA DX, MSG
+MOV AH,9
+INT 21H
+
+MOV AH, 1
+INT 21H
+MOV A,AL
+
+MOV AH, 1
+INT 21H
+MOV B,AL
+
+MOV AH, 1
+MOV C,AL
+INT 21H
+
+
+
+MOV AH, 2
+
+MOV DL,0DH ;CR
+INT 21H
+MOV DL,0AH ; LF
+INT 21H
+MOV DL,A
+INT 21H
+
+
+MOV DL,0DH ;CR
+INT 21H
+MOV DL,0AH ; LF
+INT 21H
+MOV DL,B
+INT 21H
+
+
+MOV DL,0DH ;CR
+INT 21H
+MOV DL,0AH ; LF
+INT 21H
+MOV DL,C
+INT 21H
+
+
+MOV AH, 4CH
+INT 21H
+MAIN ENDP
+END MAIN
+
+Result:::
+
+ENTER THREE INITIALS: JFK
+J
+F
+K
+
